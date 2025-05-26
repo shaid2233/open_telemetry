@@ -1,0 +1,105 @@
+# AWS EKS specific overrides for production
+
+# Global settings
+global:
+  cluster: eks-production
+  # Global storage class configuration
+  storageClass: "gp2"
+
+# Storage configuration for EKS
+storage:
+  storageClassName: "gp2"
+  annotations:
+    volume.beta.kubernetes.io/storage-provisioner: "kubernetes.io/aws-ebs"
+
+# Service configuration for EKS
+service:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ""  # Add your ACM ARN here if using HTTPS
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+
+# AWS ECR configuration
+imagePullSecrets:
+  - name: ecr-secret
+
+image:
+  registry: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
+  pullPolicy: Always
+
+# AWS-specific resource tags
+tags:
+  Platform: eks
+  ManagedBy: helm
+
+# Loki Stack configuration
+loki-stack:
+  loki:
+    persistence:
+      storageClassName: "gp2"
+      annotations:
+        volume.beta.kubernetes.io/storage-provisioner: "kubernetes.io/aws-ebs"
+      size: 10Gi
+  promtail:
+    securityContext:
+      runAsUser: 0
+      runAsGroup: 0
+    extraVolumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+    config:
+      clients:
+        - url: http://monitoring-stack-loki:3100/loki/api/v1/push
+
+# Prometheus configuration
+prometheus:
+  service:
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: nlb
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+  # Force gp2 for all Prometheus volumes
+  storageSpec:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: "gp2"
+  persistence:
+    enabled: true
+    storageClassName: "gp2"
+    size: 20Gi
+  server:
+    persistentVolume:
+      enabled: true
+      storageClassName: "gp2"
+      size: 20Gi
+
+# Grafana configuration
+grafana:
+  service:
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: nlb
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+  persistence:
+    storageClassName: "gp2"
+  adminUser: admin
+  adminPassword: "admin123"
+
+# Alertmanager configuration
+alertmanager:
+  # Force gp2 for Alertmanager
+  storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: "gp2"
+  persistentVolume:
+    enabled: true
+    storageClassName: "gp2"
+    size: 2Gi
