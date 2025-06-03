@@ -1,0 +1,911 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 5,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 33,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<header style=\"display:flex;align-items:center;background:#094780;padding:10px;\"><img src=\"https://www.magicsoftware.com/wp-content/uploads/2018/05/magic-logo-blue@3x.png\" alt=\"Dashboard Logo\" style=\"width:55px;height:50px;margin-right:10px;\"><h1 style=\"color:white;font-size:18px;margin:0;font-weight:bold;\">Open Telemetry Monitoring Dashboard</h1></header>\n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "11.6.0",
+      "title": "",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 3
+      },
+      "id": 30,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(count by (projectkey) (project_name{job=\"summary_metrics\", projectkey=~\"$Projects\"} == 1))",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Total Projects",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 4,
+        "y": 3
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "total_flows_current_session{job=\"summary_metrics\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Total Flows Completed",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 9,
+        "y": 3
+      },
+      "id": 32,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "flows_last_hour{job=\"summary_metrics\", projectkey=~\"$Projects\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Flows in Last 1 hour",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 15,
+        "y": 3
+      },
+      "id": 40,
+      "interval": "10m",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "forward",
+          "editorMode": "code",
+          "expr": "sum(\r\n  count_over_time(\r\n    {app=\"otel-collector\"}\r\n    |~ `Body: Map\\(`\r\n    | regexp `Body: Map\\((?P<body>\\{.*?\\})\\)`\r\n    | line_format \"{{.body}}\"\r\n    | json messagestring\r\n    |~ `Error`\r\n    [$time_range]\r\n  )\r\n)",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "$time_range",
+      "title": "Errors From Logs Numric",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "redis-datasource",
+        "uid": "demc6ts742waod"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 0,
+                  "text": "Stopped"
+                },
+                "1": {
+                  "color": "dark-green",
+                  "index": 1,
+                  "text": "Running"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 2,
+          "min": -10000,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 6
+      },
+      "id": 43,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^status$/",
+          "values": true
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "command": "",
+          "datasource": {
+            "type": "redis-datasource",
+            "uid": "demc6ts742waod"
+          },
+          "key": "Q-d2d3e1a2-b838-4ab7-ab09-036a49e3f6d4-3",
+          "query": "EVAL \"\n  local out = {}\n  local projects = redis.call('JSON.OBJKEYS', 'ProjectsList:magic11')\n  local project_set = {}\n  for _, project in ipairs(projects) do\n    project_set[project] = { status = 'NOT_FOUND' }\n  end\n\n  local cursor = '0'\n  repeat\n    local res = redis.call('SCAN', cursor, 'MATCH', 'ProjectData:*', 'COUNT', 1000)\n    cursor = res[1]\n    for _, key in ipairs(res[2]) do\n      local data = redis.call('JSON.GET', key, '$.projectKey', '$.projectState')\n      if data then\n        local obj = cjson.decode(data)\n        local pk = obj['$.projectKey'] and obj['$.projectKey'][1] or nil\n        local ps = obj['$.projectState'] and obj['$.projectState'][1] or 'UNKNOWN'\n        if pk and project_set[pk] then\n          if ps == 'RUNNING' then\n            project_set[pk].status = 'RUNNING'\n          else\n            project_set[pk].status = 'NOT_RUNNING'\n          end\n        end\n      end\n    end\n  until cursor == '0'\n\n  -- Map to custom numbers: RUNNING = 1 (green), NOT_FOUND = 0 (red), NOT_RUNNING = 2 (optional yellow)\n  for project, info in pairs(project_set) do\n    local numeric\n    if info.status == 'RUNNING' then\n      numeric = 1\n    elseif info.status == 'NOT_RUNNING' then\n      numeric = 2\n    else\n      numeric = 0  -- NOT_FOUND\n    end\n    table.insert(out, cjson.encode({ projectKey = project, status = numeric }))\n  end\n\n  return out\n\" 0\n",
+          "refId": "A",
+          "streaming": false,
+          "type": "cli"
+        }
+      ],
+      "timeFrom": "$time_range",
+      "title": "Project State",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "delimiter": ",",
+            "format": "auto",
+            "keepTime": false,
+            "regExp": "^RUNNING$",
+            "replace": false,
+            "source": "Value"
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "byVariable": false,
+            "include": {
+              "names": [
+                "status",
+                "projectKey"
+              ]
+            }
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "projectKey"
+                  }
+                },
+                "fieldName": "projectKey"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto",
+              "wrapText": false
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "filter projectkey",
+              "url": "/d/${__dashboard.uid}/${__dashboard.slug}?var-Projects=${__data.fields.projectkey}\r\n\r\n\r\n\r\n\r\n\r\n"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 6
+      },
+      "hideTimeOverride": false,
+      "id": 38,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "adhocFilters": [],
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort_desc(project_status{job=\"summary_metrics\", projectkey=~\"$Projects\"}) != 0",
+          "format": "table",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{projectkey}}",
+          "range": false,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "timeFrom": "$time_range",
+      "title": "Filter By Project",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "job": true,
+              "status": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Time": ""
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto",
+              "wrapText": true
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 132
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "projectkey"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 138
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "messagestring"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 453
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "id": 37,
+      "interval": "10m",
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "forward",
+          "editorMode": "code",
+          "expr": "{app=\"otel-collector\"}\r\n|~ `Body: Map\\(` \r\n| regexp `Body: Map\\((?P<body>\\{.*?\\})\\)`\r\n| line_format \"{{.body}}\"\r\n| json projectkey, messagestring, fsid, fsstep\r\n| projectkey=~\"$Projects\"\r\n|~ `Error`\r\n| line_format \"{{.projectkey}} {{.fsid}} {{.messagestring}} {{.fsstep}}\"\r\n",
+          "legendFormat": "",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "$time_range",
+      "title": "Logs Panel",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "labels"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "includeByName": {
+              "Time": true,
+              "fsid": true,
+              "fsstep": true,
+              "messagestring": true,
+              "projectkey": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "fsid": 4,
+              "fsstep": 3,
+              "messagestring": 2,
+              "projectkey": 1
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "hideTimeOverride": false,
+      "id": 39,
+      "interval": "10m",
+      "maxDataPoints": 1000,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.6.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "forward",
+          "editorMode": "code",
+          "expr": "sum by (projectkey) (\r\n  count_over_time(\r\n    {app=\"otel-collector\"}\r\n    |~ `Body: Map\\(`\r\n    | regexp `Body: Map\\((?P<body>\\{.*?\\})\\)`\r\n    | line_format \"{{.body}}\"\r\n    | json projectkey\r\n    | projectkey=~\"$Projects\"\r\n    | label_format projectkey=\"{{.projectkey}}\"\r\n    |~ `Error`\r\n    [$time_range]\r\n  )\r\n)\r\n\r\n\r\n",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "$time_range",
+      "title": "Error Logs Per Project ",
+      "type": "gauge"
+    }
+  ],
+  "preload": false,
+  "refresh": "5m",
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "definition": "label_values(project_name{projectkey!=\"unknown\"},projectkey)",
+        "includeAll": true,
+        "multi": true,
+        "name": "Projects",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(project_name{projectkey!=\"unknown\"},projectkey)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": "24h",
+          "value": "24h"
+        },
+        "description": "",
+        "hide": 1,
+        "includeAll": false,
+        "name": "time_range",
+        "options": [
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": true,
+            "text": "24h",
+            "value": "24h"
+          },
+          {
+            "selected": false,
+            "text": "2d",
+            "value": "2d"
+          },
+          {
+            "selected": false,
+            "text": "3d",
+            "value": "3d"
+          },
+          {
+            "selected": false,
+            "text": "4d",
+            "value": "4d"
+          },
+          {
+            "selected": false,
+            "text": "5d",
+            "value": "5d"
+          },
+          {
+            "selected": false,
+            "text": "6d",
+            "value": "6d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          }
+        ],
+        "query": "1h,6h,12h,24h,2d,3d,4d,5d,6d,7d\n",
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true
+  },
+  "timezone": "Asia/Jerusalem",
+  "title": "Grafana-test",
+  "uid": "aegeg6qwve51cfasdssddaaaasdasd",
+  "version": 48
+}
