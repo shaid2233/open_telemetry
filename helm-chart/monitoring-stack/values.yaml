@@ -24,11 +24,11 @@ loki:
   retention: 24h
   resources:
     requests:
-      memory: 256Mi
-      cpu: 100m
+      memory: 3Gi
+      cpu: 1
     limits:
-      memory: 512Mi
-      cpu: 200m
+      memory: 6Gi
+      cpu: 2
 
 # Prometheus configuration
 prometheus:
